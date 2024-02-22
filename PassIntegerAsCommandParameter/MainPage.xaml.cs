@@ -14,13 +14,12 @@ namespace PassIntegerAsCommandParameter
         public MainPageBindingContext()
         {
             IncrementCountCommand = new Command(onIncrementCount);
-            SetCountCommand = new Command(onSetCount);
+            SetCountCommand = new Command<string>(onSetCount);
         }
         public ICommand SetCountCommand { get; private set; }
-        private void onSetCount(object o)
+        private void onSetCount(string valueAsString)
         {
-            Debug.WriteLine($"Object is {o.GetType().Name}");
-            Count = Convert.ToInt32(o);
+            Count = Convert.ToInt32(valueAsString);
         }
         public ICommand IncrementCountCommand { get; private set; }
         private void onIncrementCount(object o)
