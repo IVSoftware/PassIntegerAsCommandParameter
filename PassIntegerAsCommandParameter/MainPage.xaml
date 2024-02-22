@@ -6,6 +6,12 @@
     <ContentPage.BindingContext>
         <local:MainPageBindingContext/>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <x:Int32 x:Key="Five">5</x:Int32>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
@@ -25,19 +31,18 @@
                 HorizontalOptions="Center" />
 
             <Button
+                Text="Set to 5"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Command="{Binding SetCountCommand}"
+                CommandParameter="{StaticResource Five}"
+                HorizontalOptions="Center" />
+
+            <Button
                 Text="{Binding ButtonText}"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Command="{Binding IncrementCountCommand}"
                 HorizontalOptions="Center" />
 
-            <Button
-                Text="Set to 5"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Command="{Binding SetCountCommand}"
-                CommandParameter="5"
-                HorizontalOptions="Center" />
-
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>
