@@ -14,12 +14,12 @@ namespace PassIntegerAsCommandParameter
         public MainPageBindingContext()
         {
             IncrementCountCommand = new Command(onIncrementCount);
-            SetCountCommand = new Command<string>(onSetCount);
+            SetCountCommand = new Command<int>(onSetCount);
         }
         public ICommand SetCountCommand { get; private set; }
-        private void onSetCount(string valueAsString)
+        private void onSetCount(int value)
         {
-            Count = Convert.ToInt32(valueAsString);
+            Count = value;
         }
         public ICommand IncrementCountCommand { get; private set; }
         private void onIncrementCount(object o)
@@ -47,13 +47,11 @@ namespace PassIntegerAsCommandParameter
                 if (!Equals(_count, value))
                 {
                     _count = value;
-                    if (Count == 0)
+                    switch (Count)
                     {
-                        ButtonText = "Click me";
-                    }
-                    else
-                    {
-                        ButtonText = $"Clicked {Count} times";
+                        case 0: ButtonText = "Click me"; break;
+                        case 1: ButtonText = $"Clicked {Count} time"; break;
+                        default: ButtonText = $"Clicked {Count} times"; break;
                     }
                     OnPropertyChanged();
                 }
