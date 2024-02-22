@@ -139,7 +139,7 @@ class MainPageBindingContext : INotifyPropertyChanged
             }
         }
     }
-    string _buttonText = "Click me";
+
     public int Count
     {
         get => _count;
@@ -148,13 +148,11 @@ class MainPageBindingContext : INotifyPropertyChanged
             if (!Equals(_count, value))
             {
                 _count = value;
-                if (Count == 0)
+                switch (Count)
                 {
-                    ButtonText = "Click me";
-                }
-                else
-                {
-                    ButtonText = $"Clicked {Count} times";
+                    case 0: ButtonText = "Click me"; break;
+                    case 1: ButtonText = $"Clicked {Count} time"; break;
+                    default: ButtonText = $"Clicked {Count} times"; break;
                 }
                 OnPropertyChanged();
             }
